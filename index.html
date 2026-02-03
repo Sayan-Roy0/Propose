@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Forever ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #ff758c, #ff7eb3, #fad0c4, #ffd1ff);
+  background-size: 400% 400%;
+  animation: gradient 12s ease infinite;
+  overflow-x: hidden;
+  color: white;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.card {
+  background: rgba(255,255,255,0.22);
+  backdrop-filter: blur(15px);
+  padding: 50px;
+  border-radius: 30px;
+  max-width: 850px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+  animation: fadeIn 1.8s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 25px;
+}
+
+p {
+  font-size: 1.3rem;
+  line-height: 1.9;
+}
+
+/* Buttons */
+.buttons {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+button {
+  padding: 15px 38px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.yes {
+  background: #ff4d6d;
+  color: white;
+}
+
+.no {
+  background: white;
+  color: #ff4d6d;
+}
+
+button:hover {
+  transform: scale(1.12);
+}
+
+/* Floating Hearts */
+.heart {
+  position: fixed;
+  bottom: -10px;
+  font-size: 24px;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-120vh); opacity: 0; }
+}
+
+/* Celebration */
+#celebrate {
+  display: none;
+}
+.glow {
+  text-shadow: 0 0 18px rgba(255,255,255,0.9);
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND MUSIC (replace with your song URL) -->
+<audio id="bgMusic" loop>
+  <source src="music/love-song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- INTRO -->
+<section>
+  <div class="card">
+    <h1>Hey Kumkum ❤️</h1>
+    <p>
+      I tried to put my feelings into words,  
+      but my heart still says more than I ever could 💕  
+      <br><br>
+      Please read this slowly… it’s all for you meri jaan ☺️
+      scroll...
+    </p>
+  </div>
+</section>
+
+<!-- LETTER -->
+<section>
+  <div class="card">
+    <h1>From My Heart 💌</h1>
+    <p>
+      Somewhere between our conversations, tumhari baatein, tumhara mere liye care, 
+      and the way you make everything feel lighter…  
+      you became my favorite part of every day ❤️  
+      <br><br>
+      You are my comfort, my happiness, my safe place.  
+      And today, I want to choose you — not just for now,  
+      but for every tomorrow 💍
+    </p>
+  </div>
+</section>
+
+<!-- PROPOSAL -->
+<section id="proposal">
+  <div class="card">
+    <h1 class="glow">Will You Be Mine Forever? 💍</h1>
+    <div class="buttons">
+      <button id="yesBtn" class="yes">YES ❤️</button>
+      <button id="noBtn" class="no">NO 🙈</button>
+    </div>
+  </div>
+</section>
+
+<!-- CELEBRATION -->
+<section id="celebrate">
+  <div class="card">
+    <h1 class="glow">SHE SAID YES!!! 🎉💖</h1>
+    <p>
+      From this moment on, my heart is yours ❤️  
+      In every smile, every dream, every step ahead…  
+      I choose you. Always.  
+      <br><br>
+      This isn’t just a proposal —  
+      this is the beginning of *our forever* 💍✨
+    </p>
+    <h2>— I Am Yours, Always 💞</h2>
+  </div>
+</section>
+
+<script>
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const celebrate = document.getElementById("celebrate");
+const music = document.getElementById("bgMusic");
+
+/* Floating hearts */
+function startHearts() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+  }, 250);
+}
+
+
+/* Final celebration */
+function celebrateLove() {
+  music.play(); // starts music on interaction
+  startHearts();
+  celebrate.style.display = "flex";
+  window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+}
+
+/* YES works */
+yesBtn.addEventListener("click", celebrateLove);
+
+/* NO becomes YES 😄 */
+noBtn.addEventListener("click", () => {
+  noBtn.innerText = "YES ❤️";
+  noBtn.classList.remove("no");
+  noBtn.classList.add("yes");
+  noBtn.onclick = celebrateLove;
+});
+</script>
+
+</body>
+</html>
